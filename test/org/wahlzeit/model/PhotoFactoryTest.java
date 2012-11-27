@@ -17,32 +17,28 @@
  * License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-
 package org.wahlzeit.model;
 
 import junit.framework.*;
 
-/**
- * 
- * @author dirkriehle
- * 
- */
-public class AllTests extends TestSuite {
-
+public class PhotoFactoryTest extends TestCase {
+	
 	public static void main(String[] args) {
-		junit.textui.TestRunner.run(suite());
+		junit.textui.TestRunner.run(UserStatusTest.class);
 	}
 
-	public static Test suite() {
-		TestSuite suite = new TestSuite();
-		suite.addTestSuite(TagsTest.class);
-		suite.addTestSuite(ValueTest.class);
-		suite.addTestSuite(GenderTest.class);
-		suite.addTestSuite(PhotoFilterTest.class);
-		suite.addTestSuite(AccessRightsTest.class);
-		suite.addTestSuite(UserStatusTest.class);
-		suite.addTestSuite(PhotoFactoryTest.class);
-		return suite;
+	public PhotoFactoryTest(String name) {
+		super(name);
 	}
-
+	
+	public void testSingleton() {
+		PhotoFactory test1 = PhotoFactory.INSTANCE;
+		test1.createPhoto();
+		PhotoFactory test2 = PhotoFactory.INSTANCE;
+		test2.createPhoto();
+		
+		assertTrue(test1 == test2);
+	
+	}
+	
 }
