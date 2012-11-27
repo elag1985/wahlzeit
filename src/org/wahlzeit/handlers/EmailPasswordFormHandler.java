@@ -27,7 +27,6 @@ import org.wahlzeit.model.User;
 import org.wahlzeit.model.UserLog;
 import org.wahlzeit.model.UserManager;
 import org.wahlzeit.model.UserSession;
-import org.wahlzeit.services.AbstractEmailServer;
 import org.wahlzeit.services.EmailAddress;
 import org.wahlzeit.services.EmailServer;
 import org.wahlzeit.utils.StringUtil;
@@ -75,7 +74,7 @@ public class EmailPasswordFormHandler extends AbstractWebFormHandler {
 		
 		User user = userManager.getUserByName(userName);
 		
-		EmailServer emailServer = AbstractEmailServer.getInstance();
+		EmailServer emailServer = EmailServer.getInstance();
 		EmailAddress from = ctx.cfg().getModeratorEmailAddress();
 		EmailAddress to = user.getEmailAddress();
 		emailServer.sendEmail(from, to, ctx.cfg().getAuditEmailAddress(), ctx.cfg().getSendPasswordEmailSubject(), user.getPassword());
