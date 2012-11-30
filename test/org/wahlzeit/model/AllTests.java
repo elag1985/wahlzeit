@@ -41,7 +41,6 @@ public class AllTests extends TestSuite {
 		suite.addTestSuite(PhotoFilterTest.class);
 		suite.addTestSuite(AccessRightsTest.class);
 		suite.addTestSuite(UserStatusTest.class);
-		suite.addTestSuite(PhotoFactoryTest.class);
 		return suite;
 	}
 

@@ -79,7 +79,7 @@ public abstract class ServerMain extends ModelMain {
 		configurePartHandlers();
 		configureLanguageModels();
 		
-		PhotoFactory photoFactory= PhotoFactory.INSTANCE;
+		PhotoFactory.initialize();
 			
 		AgentManager am = AgentManager.getInstance();
 		am.startAllThreads();

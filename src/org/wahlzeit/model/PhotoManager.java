@@ -89,7 +89,7 @@ public class PhotoManager extends ObjectManager {
 	 * 
 	 */
 	public PhotoManager() {
-		photoTagCollector = PhotoFactory.INSTANCE.createPhotoTagCollector();
+		photoTagCollector = PhotoFactory.getInstance().createPhotoTagCollector();
 	}
 	
 	/**
@@ -136,7 +136,7 @@ public class PhotoManager extends ObjectManager {
 	 * 
 	 */
 	protected Photo createObject(ResultSet rset) throws SQLException {
-		return PhotoFactory.INSTANCE.createPhoto(rset);
+		return PhotoFactory.getInstance().createPhoto(rset);
 	}
 	
 	/**
