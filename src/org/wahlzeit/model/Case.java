@@ -32,28 +32,32 @@ import org.wahlzeit.services.*;
 public abstract class Case extends DataObject {
 	
 	/**
-	 * 0 is never returned, first value is 1
-	 */
+	* 0 is never returned, first value is 1
+	* @ Invariant lastCaseId>=1
+	*/
 	protected static int lastCaseId = 0;
 	
 	/**
-	 * @methodtype get
-	 */
+	* @methodtype get
+	*/
 	public static synchronized int getLastCaseId() {
+		assert(lastCaseId>=0):"lastCaseId should not be negative";
 		return lastCaseId;
 	}
 	
 	/**
-	 * @methodtype set
-	 */
+	* @methodtype set
+	*/
 	public static synchronized void setLastCaseId(int newId) {
 		lastCaseId = newId;
+		assert(lastCaseId==newId):"lastCaseId should  be equal to newId";
 	}
 	
 	/**
-	 * @methodtype idiom
-	 */
+	* @methodtype idiom
+	*/
 	public static synchronized int getNextCaseId() {
+		assert(lastCaseId>=0):"lastCaseId should not be negative";
 		return ++lastCaseId;
 	}
 
