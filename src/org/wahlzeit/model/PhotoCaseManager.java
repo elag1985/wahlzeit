@@ -67,7 +67,7 @@ public class PhotoCaseManager extends ObjectManager {
 		Collection<PhotoCase> opc = new LinkedList<PhotoCase>();
 		loadOpenPhotoCases(opc);
 		for (PhotoCase pc : opc) {
-			openPhotoCases.put(pc.getId(), pc);
+			openPhotoCases.put(pc.getId().asInt(), pc);
 		}
 	}
 	
@@ -101,9 +101,9 @@ public class PhotoCaseManager extends ObjectManager {
 	 * @methodtype command
 	 */
 	public void addPhotoCase(PhotoCase myCase) {
-		openPhotoCases.put(myCase.getId(), myCase);
+		openPhotoCases.put(myCase.getId().asInt(), myCase);
 		try {
-			createObject(myCase, getReadingStatement("INSERT INTO cases(id) VALUES(?)"), myCase.getId());
+			createObject(myCase, getReadingStatement("INSERT INTO cases(id) VALUES(?)"), myCase.getId().asInt());
 			updateObject(myCase, getUpdatingStatement("SELECT * FROM cases WHERE id = ?"));
 			//@FIXME Main.saveGlobals();
 		} catch (SQLException sex) {
