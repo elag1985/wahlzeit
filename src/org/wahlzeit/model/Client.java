@@ -20,110 +20,15 @@
 
 package org.wahlzeit.model;
 
-import org.wahlzeit.services.*;
 
-/**
- * A Client uses the system. It is an abstract superclass.
- * This package defines guest, user, moderator, and administrator clients.
- * 
- * @author dirkriehle
- *
- */
-public abstract class Client {
+public interface Client {
 	
-	/**
-	 * 
-	 */
-	protected AccessRights rights = AccessRights.NONE;
+	public boolean hasRole(Class<? extends ClientRole> role);
 	
-	/**
-	 * 
-	 */
-	protected EmailAddress emailAddress = EmailAddress.EMPTY;
+	public ClientRole getRole(Class<? extends ClientRole> role);
 	
-	/**
-	 * 
-	 */
-	protected Client() {
-		// do nothing
-	}
+	void addRole(Class<? extends ClientRole> role, ClientRole client);
 	
-	/**
-	 * @methodtype initialization
-	 */
-	protected void initialize(AccessRights myRights, EmailAddress myEmailAddress) {
-		rights = myRights;
-		setEmailAddress(myEmailAddress);
-	}
-
-	/**
-	 * @methodtype get
-	 */
-	public AccessRights getRights() {
-		return rights;
-	}
-	
-	/**
-	 * @methodtype set
-	 */
-	public void setRights(AccessRights newRights) {
-		rights = newRights;
-	}
-	
-	/**
-	 * 
-	 * @methodtype boolean-query
-	 */
-	public boolean hasRights(AccessRights otherRights) {
-		return AccessRights.hasRights(rights, otherRights);
-	}
-	
-	/**
-	 * 
-	 * @methodtype boolean-query
-	 */
-	public boolean hasGuestRights() {
-		return hasRights(AccessRights.GUEST);
-	}
-	
-	/**
-	 * 
-	 */
-	public boolean hasUserRights() {
-		return hasRights(AccessRights.USER);
-	}
-	
-	/**
-	 * 
-	 * @methodtype boolean-query
-	 */
-	public boolean hasModeratorRights
-	() {
-		return hasRights(AccessRights.MODERATOR);
-	}
-	
-	/**
-	 * 
-	 * @methodtype boolean-query
-	 */
-	public boolean hasAdministratorRights() {
-		return hasRights(AccessRights.ADMINISTRATOR);
-	}
-	
-	/**
-	 * 
-	 * @methodtype get
-	 */
-	public EmailAddress getEmailAddress() {
-		return emailAddress;
-	}
-	
-	/**
-	 * 
-	 * @methodtype set
-	 */
-	public void setEmailAddress(EmailAddress newEmailAddress) {
-		emailAddress = newEmailAddress;
-	}
+	void removeRole(Class<? extends ClientRole> role);
 	
 }

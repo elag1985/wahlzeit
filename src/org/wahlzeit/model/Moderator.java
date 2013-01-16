@@ -29,26 +29,13 @@ import org.wahlzeit.services.*;
  *
  */
 public class Moderator extends User {
-
-	/**
-	 * 
-	 */
-	public Moderator(String myName, String myPassword, String myEmailAddress, long vc) {
-		this(myName, myPassword, EmailAddress.getFromString(myEmailAddress), vc);
-	}
 	
 	/**
 	 * 
-	 */
-	public Moderator(String myName, String myPassword, EmailAddress myEmailAddress, long vc) {
-		initialize(AccessRights.MODERATOR, myEmailAddress, myName, myPassword, vc);
-	}
-	
-	/**
-	 * 
-	 */
-	protected Moderator() {
-		// do nothing
+	 */ 
+	protected Moderator(ClientCore core) { 
+		super(core);
+	    core.setRights(AccessRights.MODERATOR);
 	}
 		
 }
