@@ -198,11 +198,12 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 * 
 	 */
-	public void savePhotos() {
+	public void savePhotos() throws ReadWriteException{
 		try {
 			updateObjects(photoCache.values(), getUpdatingStatement("SELECT * FROM photos WHERE id = ?"));
 		} catch (SQLException sex) {
 			SysLog.logThrowable(sex);
+			throw new ReadWriteException(sex);
 		}
 	}
 	
